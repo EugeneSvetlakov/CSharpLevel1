@@ -55,6 +55,26 @@ namespace Lib.Array2d
             return str;
         }
         /// <summary>
+        /// Метод: Массив в текст с разбиением на строки.
+        /// </summary>
+        /// <param name="delimiter">разделитель элементов в строке</param>
+        public string ToText(string delimiter = "\t")
+        {
+            string str = "";
+            int rows = a.GetUpperBound(0) + 1;
+            int columns = a.Length / rows;
+            for(int j = 0; j < rows; j++)
+            {
+                for(int i = 0; i < columns; i++)
+                {
+                    if(i != columns - 1) str += $"{a[j,i]}{delimiter}";
+                    else str += $"{a[j,i]}";
+                }
+                if (j != rows - 1) str += Environment.NewLine;
+            }
+            return str;
+        }
+        /// <summary>
         /// Метод: Сумма всех элементов массива
         /// </summary>
         public double Summ()
@@ -154,14 +174,12 @@ namespace Lib.Array2d
                     int column = 0;
                     string[] strseparator = new string[] {separator};
                     string[] str1 = sr.ReadLine().Split(strseparator,StringSplitOptions.RemoveEmptyEntries);
-                    //string[] str = sr.ReadLine().Split(separator,StringSplitOptions.RemoveEmptyEntries);
                     foreach(string s in str1){
                         sl.row = row;
                         sl.column = column;
                         int.TryParse(s, out int num);
                         sl.num = num;
                         ls.Add(sl);
-                        System.Console.Write(s + ", ");
                         column++;
                     } 
                     row++;
@@ -182,9 +200,37 @@ namespace Lib.Array2d
             }
             catch (FileNotFoundException ex)
             {
-                Console.WriteLine(ex);
+                Console.WriteLine("Ошибка: " + ex.Message);
                 int[,] a = {};
             }
+            catch (IOException ex)
+            {
+                System.Console.WriteLine("Статус: ошибка чтения файла - " + ex.Message);
+                int[,] a = {};
+            }
+        }
+
+        public void ToFile(string filename)
+        {
+            string TextToFile = this.ToText();
+            TextToFile += Environment.NewLine;
+            try
+            {
+                if (!File.Exists(filename))
+                {
+                    File.WriteAllText(filename, TextToFile);
+                }
+                else
+                {
+                    throw new ArgumentException(String.Format("Файл {0} уже существует."
+                            , filename), "filename");
+                }
+            }
+            catch (IOException ex)
+            {
+                System.Console.WriteLine("Статус: ошибка записи файла - " + ex.Message);
+            }
+            
         }
     }
 }
