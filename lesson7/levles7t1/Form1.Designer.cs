@@ -46,9 +46,9 @@
             this.lblResult.AutoSize = true;
             this.lblResult.Location = new System.Drawing.Point(79, 54);
             this.lblResult.Name = "lblResult";
-            this.lblResult.Size = new System.Drawing.Size(13, 13);
+            this.lblResult.Size = new System.Drawing.Size(16, 13);
             this.lblResult.TabIndex = 0;
-            this.lblResult.Text = "0";
+            this.lblResult.Text = "-1";
             // 
             // btnPlus
             // 
@@ -117,9 +117,9 @@
             this.lblShagCountNum.AutoSize = true;
             this.lblShagCountNum.Location = new System.Drawing.Point(79, 83);
             this.lblShagCountNum.Name = "lblShagCountNum";
-            this.lblShagCountNum.Size = new System.Drawing.Size(13, 13);
+            this.lblShagCountNum.Size = new System.Drawing.Size(16, 13);
             this.lblShagCountNum.TabIndex = 0;
-            this.lblShagCountNum.Text = "0";
+            this.lblShagCountNum.Text = "-1";
             // 
             // lblCeil
             // 
@@ -135,9 +135,9 @@
             this.lblCeilNum.AutoSize = true;
             this.lblCeilNum.Location = new System.Drawing.Point(79, 102);
             this.lblCeilNum.Name = "lblCeilNum";
-            this.lblCeilNum.Size = new System.Drawing.Size(13, 13);
+            this.lblCeilNum.Size = new System.Drawing.Size(16, 13);
             this.lblCeilNum.TabIndex = 0;
-            this.lblCeilNum.Text = "0";
+            this.lblCeilNum.Text = "-1";
             // 
             // btnBack
             // 

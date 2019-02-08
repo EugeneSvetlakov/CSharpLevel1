@@ -55,7 +55,7 @@ namespace levles7t1
 
         public string Print()
         {
-            string msg = $"Target: {this._StepList.Peek().Target}, Result: {this._StepList.Peek().Result}, ShagCounter: {udvoitel.Counter}, ListCount= {this._StepList.Count}";
+            string msg = $"Target: {this._StepList.Peek().Target}, Result: {this._StepList.Peek().Result}, Counter: {this._StepList.Peek().Counter}, ListCount= {this._StepList.Count}, ClickCounter: {udvoitel.Counter}";
             //MessageBox.Show(msg);
             //Debug.WriteLine(msg);
             return msg;
@@ -63,24 +63,36 @@ namespace levles7t1
 
         public void NewStep(int num)
         {
-            this._StepList.Push(new GElement(this._StepList.Peek().Target, num, this._StepList.Peek().Counter++));
-            Debug.WriteLine($"input num= {num}, Count List= {this._StepList.Count}");
-            Debug.WriteLine(this.Print());
+            try
+            {
+                this._StepList.Push(new GElement(this._StepList.Peek().Target, num, this._StepList.Peek().Counter + 1));
+                Debug.WriteLine($"input num= {num}, Count List= {this._StepList.Count}");
+                Debug.WriteLine(this.Print());
+            }
+            catch { }
         }
 
         public void BackStep()
         {
-            if (this._StepList.Count > 1)
+            try
             {
-                this._StepList.Pop();
-                Debug.WriteLine(this.Print());
+                if (this._StepList.Count > 1)
+                {
+                    this._StepList.Pop();
+                    Debug.WriteLine(this.Print());
+                }
             }
+            catch { }
         }
 
         public void ClearGame()
         {
-            this._StepList.Push(new GElement(this._StepList.Peek().Target,0,0));
-            Debug.WriteLine(this.Print());
+            try
+            {
+                this._StepList.Push(new GElement(this._StepList.Peek().Target, 0, 0));
+                Debug.WriteLine(this.Print());
+            }
+            catch { }
         }
 
         public void NewGame()

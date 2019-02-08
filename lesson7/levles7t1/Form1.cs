@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -61,9 +62,16 @@ namespace levles7t1
         }
         private void updScreen()
         {
-            lblResult.Text = Game.StepList.Peek().Result.ToString();
-            lblShagCountNum.Text = Game.StepList.Peek().Counter.ToString();
-            lblCeilNum.Text = Game.StepList.Peek().Target.ToString();
+            try
+            {
+                lblResult.Text = Game.StepList.Peek().Result.ToString();
+                lblShagCountNum.Text = Game.StepList.Peek().Counter.ToString();
+                lblCeilNum.Text = Game.StepList.Peek().Target.ToString();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"{e}");
+            }
         }
 
         private void btnBack_Click(object sender, EventArgs e)
