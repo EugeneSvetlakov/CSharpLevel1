@@ -6,30 +6,34 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace levles7t1
+namespace lev1les7t1
 {
     class GElement
     {
         int _Target;
         int _Result;
         int _Counter;
+        int _minStep;
 
         public GElement()
         {
             _Target = 0;
             _Result = 0;
             _Counter = 0;
+            _minStep = 0;
         }
-        public GElement(int Target, int Result, int Counter)
+        public GElement(int Target, int Result, int Counter, int MinStep)
         {
             _Target = Target;
             _Result = Result;
             _Counter = Counter;
+            _minStep = MinStep;
         }
 
         public int Target { get => _Target; set => _Target = value; }
         public int Result { get => _Result; set => _Result = value; }
         public int Counter { get => _Counter; set => _Counter = value; }
+        public int MinStep { get => _minStep; set => _minStep = value; }
     }
 
     class udvoitel
@@ -65,7 +69,7 @@ namespace levles7t1
         {
             try
             {
-                this._StepList.Push(new GElement(this._StepList.Peek().Target, num, this._StepList.Peek().Counter + 1));
+                this._StepList.Push(new GElement(this._StepList.Peek().Target, num, this._StepList.Peek().Counter + 1, this._StepList.Peek().MinStep));
                 Debug.WriteLine($"input num= {num}, Count List= {this._StepList.Count}");
                 Debug.WriteLine(this.Print());
             }
@@ -89,7 +93,7 @@ namespace levles7t1
         {
             try
             {
-                this._StepList.Push(new GElement(this._StepList.Peek().Target, 0, 0));
+                this._StepList.Push(new GElement(this._StepList.Peek().Target, 0, 0, this._StepList.Peek().MinStep));
                 Debug.WriteLine(this.Print());
             }
             catch { }
@@ -97,10 +101,32 @@ namespace levles7t1
 
         public void NewGame()
         {
-            int target = random.Next(100);
+            int target = random.Next(1,101);
+            int minstep = 1;
+            int startNum = target;
+            while (true)
+            {
+                if (startNum == 1)
+                {
+                    break;
+                }
+                else
+                {
+                    if(startNum % 2 == 0)
+                    {
+                        startNum /= 2;
+                    }
+                    else
+                    {
+                        startNum -= 1;
+                    }
+                    minstep++;
+                }
+                
+            }
             this._StepList.Clear();
-            this._StepList.Push(new GElement(target,0,0));
-            MessageBox.Show($"Получите число: '{target}' за минимальное количество ходов.");
+            this._StepList.Push(new GElement(target, 0, 0, minstep));
+            MessageBox.Show($"Получите число: '{target}' за {minstep} ходов.");
             Debug.WriteLine(this.Print());
         }
     }

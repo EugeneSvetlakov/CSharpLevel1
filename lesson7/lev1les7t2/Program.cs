@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace levles7t1
+namespace lev1les7t2
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace levles7t1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new WF_Udvoitel());
+            Application.Run(new Form1());
         }
     }
 }

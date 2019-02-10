@@ -17,7 +17,7 @@ using System.Windows.Forms;
 //Используйте обобщенный класс Stack.
 //Вся логика игры должна быть реализована в классе с удвоителем.
 
-namespace levles7t1
+namespace lev1les7t1
 {
     public delegate void GameClick(int num);
 
@@ -48,36 +48,66 @@ namespace levles7t1
             udvoitel.Count();
         }
 
-        private void btnGame_Click(object sender, EventArgs e)
-        {
-            Game.NewGame();
-            updScreen();
-        }
-
         private void btnReset_Click(object sender, EventArgs e)
         {
             Game.ClearGame();
             updScreen();
-
-        }
-        private void updScreen()
-        {
-            try
-            {
-                lblResult.Text = Game.StepList.Peek().Result.ToString();
-                lblShagCountNum.Text = Game.StepList.Peek().Counter.ToString();
-                lblCeilNum.Text = Game.StepList.Peek().Target.ToString();
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine($"{e}");
-            }
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
             Game.BackStep();
             updScreen();
+        }
+
+        private void NewGameSubMenuItem_Click(object sender, EventArgs e)
+        {
+            Game.NewGame();
+            updScreen();
+            enBtn();
+        }
+
+        private void disBtn()
+        {
+            btnPlus.Enabled = false;
+            btnX2.Enabled = false;
+            btnBack.Enabled = false;
+            btnReset.Enabled = false;
+        }
+        private void enBtn()
+        {
+            btnPlus.Enabled = true;
+            btnX2.Enabled = true;
+            btnBack.Enabled = true;
+            btnReset.Enabled = true;
+        }
+        private void updScreen()
+        {
+            try
+            {
+                int res = Game.StepList.Peek().Result;
+                int target = Game.StepList.Peek().Target;
+                int step = Game.StepList.Peek().Counter;
+                int minstep = Game.StepList.Peek().MinStep;
+                lblResult.Text = res.ToString();
+                lblShagCountNum.Text = step.ToString();
+                lblCeilNum.Text = target.ToString();
+                lblMinStep.Text = (minstep - step).ToString();
+                if (step == minstep && target != res)
+                {
+                    disBtn();
+                    MessageBox.Show("Вы проиграли!");
+                }
+                if (step == minstep && target == res)
+                {
+                    disBtn();
+                    MessageBox.Show("Вы выиграли!");
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"{e}");
+            }
         }
     }
 }

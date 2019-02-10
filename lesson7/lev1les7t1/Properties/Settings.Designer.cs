@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace levles7t1.Properties
+namespace lev1les7t1.Properties
 {
 
 

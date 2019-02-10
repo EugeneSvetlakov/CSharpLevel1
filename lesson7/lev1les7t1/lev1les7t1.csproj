@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{75803D15-E9EC-4DCC-AACA-26A44BB30F76}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>levles7t1</RootNamespace>
-    <AssemblyName>levles7t1</AssemblyName>
+    <RootNamespace>lev1les7t1</RootNamespace>
+    <AssemblyName>lev1les7t1</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
