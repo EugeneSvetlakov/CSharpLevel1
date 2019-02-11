@@ -33,7 +33,7 @@ namespace lev1les6t2
                 arrstr += $"{item}\t";
             }
             System.Console.WriteLine($"Масив: {arrstr}");
-            System.Console.WriteLine($"Минииуи = {minF}");
+            System.Console.WriteLine($"Минимум = {minF}");
             Console.ReadLine();
         }
     }
