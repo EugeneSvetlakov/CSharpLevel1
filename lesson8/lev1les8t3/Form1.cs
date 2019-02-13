@@ -105,8 +105,8 @@ namespace lev1les8t3
             {
                 if(!string.IsNullOrWhiteSpace(tboxQuestion.Text) && tboxQuestion.Text.Length > 2)
                 {
-                    database[(int)nudNumber.Value - 1].text = tboxQuestion.Text;
-                    database[(int)nudNumber.Value - 1].trueFalse = cboxTrue.Checked;
+                    database[(int)nudNumber.Value - 1].Text = tboxQuestion.Text;
+                    database[(int)nudNumber.Value - 1].TrueFalse = cboxTrue.Checked;
                 }
                 else
                 {
@@ -123,8 +123,8 @@ namespace lev1les8t3
         {
             if (database != null)
             {
-                tboxQuestion.Text = database[(int)nudNumber.Value - 1].text;
-                cboxTrue.Checked = database[(int)nudNumber.Value - 1].trueFalse;
+                tboxQuestion.Text = database[(int)nudNumber.Value - 1].Text;
+                cboxTrue.Checked = database[(int)nudNumber.Value - 1].TrueFalse;
             }
             else
             {
@@ -150,6 +150,11 @@ namespace lev1les8t3
                 database.FileName = path;
                 database.Save();
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

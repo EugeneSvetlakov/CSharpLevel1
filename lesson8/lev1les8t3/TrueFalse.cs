@@ -13,8 +13,8 @@ namespace lev1les8t3
     [Serializable]
     public class Question
     {
-        public string text;       // Текст вопроса
-        public bool trueFalse;// Правда или нет
+        string _text;       // Текст вопроса
+        bool _trueFalse;// Правда или нет
                               // Здесь мы нарушаем правила инкапсуляции и эти поля нужно было бы реализовать через открытые свойства, но для упрощения примера оставим так
                               // Вам же предлагается сделать поля закрытыми и реализовать открытые свойства Text и TrueFalse
                               // Для сериализации должен быть пустой конструктор.
@@ -23,9 +23,12 @@ namespace lev1les8t3
         }
         public Question(string text, bool trueFalse)
         {
-            this.text = text;
-            this.trueFalse = trueFalse;
+            this._text = text;
+            this._trueFalse = trueFalse;
         }
+
+        public string Text { get => _text; set => _text = value; }
+        public bool TrueFalse { get => _trueFalse; set => _trueFalse = value; }
     }
     // Класс для хранения списка вопросов. А также для сериализации в XML и десериализации из XML
     class TrueFalse

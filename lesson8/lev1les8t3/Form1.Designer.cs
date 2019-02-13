@@ -33,16 +33,16 @@
             this.miNew = new System.Windows.Forms.ToolStripMenuItem();
             this.miOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.miSave = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripSeparator();
             this.miExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tboxQuestion = new System.Windows.Forms.TextBox();
             this.cboxTrue = new System.Windows.Forms.CheckBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnSaveQues = new System.Windows.Forms.Button();
             this.nudNumber = new System.Windows.Forms.NumericUpDown();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudNumber)).BeginInit();
             this.SuspendLayout();
@@ -76,35 +76,50 @@
             // miNew
             // 
             this.miNew.Name = "miNew";
-            this.miNew.Size = new System.Drawing.Size(180, 22);
+            this.miNew.Size = new System.Drawing.Size(130, 26);
             this.miNew.Text = "New";
             this.miNew.Click += new System.EventHandler(this.miNew_Click);
             // 
             // miOpen
             // 
             this.miOpen.Name = "miOpen";
-            this.miOpen.Size = new System.Drawing.Size(180, 22);
+            this.miOpen.Size = new System.Drawing.Size(130, 26);
             this.miOpen.Text = "Open";
             this.miOpen.Click += new System.EventHandler(this.miOpen_Click);
             // 
             // miSave
             // 
             this.miSave.Name = "miSave";
-            this.miSave.Size = new System.Drawing.Size(180, 22);
+            this.miSave.Size = new System.Drawing.Size(130, 26);
             this.miSave.Text = "Save";
             this.miSave.Click += new System.EventHandler(this.miSave_Click);
+            // 
+            // saveAsToolStripMenuItem
+            // 
+            this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(130, 26);
+            this.saveAsToolStripMenuItem.Text = "SaveAs";
+            this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(177, 6);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(127, 6);
             // 
             // miExit
             // 
             this.miExit.Name = "miExit";
-            this.miExit.Size = new System.Drawing.Size(180, 22);
+            this.miExit.Size = new System.Drawing.Size(130, 26);
             this.miExit.Text = "Exit";
             this.miExit.Click += new System.EventHandler(this.miExit_Click);
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(64, 25);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // tboxQuestion
             // 
@@ -169,21 +184,6 @@
             this.nudNumber.TabIndex = 5;
             this.nudNumber.ValueChanged += new System.EventHandler(this.nudNumber_ValueChanged);
             // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(64, 25);
-            this.aboutToolStripMenuItem.Text = "About";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
-            // 
-            // saveAsToolStripMenuItem
-            // 
-            this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
-            this.saveAsToolStripMenuItem.Text = "SaveAs";
-            this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -202,6 +202,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudNumber)).EndInit();
