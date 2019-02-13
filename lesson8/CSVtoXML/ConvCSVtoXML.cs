@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Xml.Serialization;
 
 namespace CSVtoXML
 {
@@ -46,54 +47,128 @@ namespace CSVtoXML
     }
     public class Base
     {
+        string _inFile;
+        string _outFile;
         List<Student> _list;
 
-        public List<Student> List { get => _list; set => _list = value; }
-
-        public static void LoadCsv(string path, out List<Student> list, char separator = ';')
+        public Base()
         {
-            list = new List<Student>();
-            using (StreamReader sr = new StreamReader(path))
-            {
-                while (!sr.EndOfStream)
-                {
-                    try
-                    {
-                        string[] s = sr.ReadLine().Split(separator);
-                        // Добавляем в список новый экземпляр класса Student
-                        list.Add(new Student(s[0], s[1], s[2], s[3], s[4], int.Parse(s[5]), int.Parse(s[6]), s[7], int.Parse(s[8])));
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e.Message);
-                        Console.WriteLine("Ошибка!ESC - прекратить выполнение программы");
-                        // Выход из Main
-                        if (Console.ReadKey().Key == ConsoleKey.Escape) return;
-                    }
-                }
-            }
         }
+
+        public string InFile { get => _inFile; set => _inFile = value; }
+        public string OutFile { get => _outFile; set => _outFile = value; }
+        public List<Student> List { get => _list; set => _list = value; }
     }
     public class ConvCSVtoXML
     {
         string _inFile;
         string _outFile;
+        List<Student> _list;
+        string _status;
+
+        public ConvCSVtoXML()
+        {
+        }
         /// <summary>
-        /// Преобразование CSV в XML
+        /// Конструктор класса
         /// </summary>
-        /// <param name="inFile">Полный путь к CSV файлу</param>
-        /// <param name="outFile">Полный путь к XML файлу</param>
-        public void Conv(string inFile, string outFile, char separator = ';')
+        /// <param name="inFile">Входной CSV файл</param>
+        /// <param name="outFile">Выходной XML файл</param>
+        public ConvCSVtoXML(string inFile, string outFile)
         {
-
+            _inFile = inFile;
+            _outFile = outFile;
+            _list = new List<Student>();
+            _status = string.Empty;
         }
-        private void LoadCSV(string path, char separator)
+        /// <summary>
+        /// Файл CSV {get;set;}
+        /// </summary>
+        public string InFile { get => _inFile; set => _inFile = value; }
+        /// <summary>
+        /// Выходной XML файл
+        /// </summary>
+        public string OutFile { get => _outFile; set => _outFile = value; }
+        /// <summary>
+        /// Список с данными
+        /// </summary>
+        public List<Student> List { get => _list; set => _list = value; }
+        /// <summary>
+        /// Статус последнего выполненного метода
+        /// </summary>
+        public string Status { get => _status; }
+        /// <summary>
+        /// Свойство размер списка с данными
+        /// </summary>
+        public int Count
         {
-
+            get { return this._list.Count; }
         }
-        private void SaveXML(string path)
+        /// <summary>
+        /// Загрузка CSV файла
+        /// </summary>
+        /// <param name="separator">Делитель данных в строке</param>
+        private void LoadCSV(char separator = ';')
         {
-
+            FileInfo fi = new FileInfo(this.InFile);
+            if(fi.Exists)
+            {
+                using (StreamReader sr = new StreamReader(this.InFile))
+                {
+                    while (!sr.EndOfStream)
+                    {
+                        string[] s = sr.ReadLine().Split(separator);
+                        // Добавляем в список новый экземпляр класса Student
+                        if (s.Length == 9)
+                        {
+                            this._list.Add(new Student(s[0], s[1], s[2], s[3], s[4], int.Parse(s[5]), int.Parse(s[6]), s[7], int.Parse(s[8])));
+                        }
+                    }
+                }
+                if(this._list.Count > 1)
+                {
+                    this._status = "Load Ok";
+                }
+                else
+                {
+                    this._status = "Load Bad";
+                }
+            }
+            else
+            {
+                this._status = "Load Bad";
+            }
+        }
+        /// <summary>
+        /// Сохранение данных в XML формат
+        /// </summary>
+        private void SaveXML()
+        {
+            FileInfo fi = new FileInfo(this.OutFile);
+            if((!fi.Exists || !fi.IsReadOnly) && this._list.Count > 0)
+            {
+                XmlSerializer xmlFormat = new XmlSerializer(typeof(List<Student>));
+                Stream fStream = new FileStream(this.OutFile, FileMode.Create, FileAccess.Write);
+                xmlFormat.Serialize(fStream, this.List);
+                fStream.Close();
+                this._status = "Export Ok";
+            }
+            else
+            {
+                this._status = "Export Bad";
+            }
+        }
+        /// <summary>
+        /// Конвертер CSV -> XML
+        /// </summary>
+        /// <param name="separator"></param>
+        public void Conv(char separator = ';')
+        {
+            this.LoadCSV(separator);
+            if(this._status == "Load Ok")
+            {
+            this.SaveXML();
+            }
         }
     }
 }
