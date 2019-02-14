@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<ArrayOfQuestion xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Question>
+    <text>самый большой Императорский Дворец находится в Японии?</text>
+    <trueFalse>false</trueFalse>
+  </Question>
+  <Question>
+    <text>самолет взлетит быстрее, если будет разгоняться по ветру?</text>
+    <trueFalse>false</trueFalse>
+  </Question>
+  <Question>
+    <text>дятлы умирают от сотрясения мозга?</text>
+    <trueFalse>true</trueFalse>
+  </Question>
+  <Question>
+    <text>у головастика передние лапы вырастают раньше, чем задние?</text>
+    <trueFalse>true</trueFalse>
+  </Question>
+  <Question>
+    <text>втыкая швейную иглу, можно развить давление в одну тысячу атмосфер?</text>
+    <trueFalse>true</trueFalse>
+  </Question>
+  <Question>
+    <text>,</text>
+    <trueFalse>true</trueFalse>
+  </Question>
+</ArrayOfQuestion>
