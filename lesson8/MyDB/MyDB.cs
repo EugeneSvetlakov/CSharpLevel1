@@ -58,6 +58,7 @@ namespace MyLibDB
             this._fileName = fileName;
             this._list = new List<DItem>();
         }
+
         /// <summary>
         /// Добавление новой записи в базу
         /// </summary>
@@ -66,6 +67,16 @@ namespace MyLibDB
         public void Add(string key, string data)
         {
             this._list.Add(new DItem(key, data));
+        }
+
+        public void AddRange(List<DItem> db)
+        {
+            int index = 0;
+            foreach (var item in db)
+            {
+                this._list.Add(new DItem(db[index].Key, db[index].Data));
+                index++;
+            }
         }
         /// <summary>
         /// Удаление элемента базы по его индексу
